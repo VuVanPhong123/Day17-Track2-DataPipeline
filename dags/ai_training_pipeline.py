@@ -6,7 +6,7 @@
     trong Airflow, và hai tham số của DAG quyết định điều gì xảy ra sau đó.
 
     `make verify` đọc file này bằng AST (không import) và kiểm tra hai
-    tham số ở phần TODO bên dưới.
+    tham số ở phần cấu hình DAG bên dưới.
 """
 
 from __future__ import annotations
@@ -29,13 +29,10 @@ with DAG(
     schedule="0 2 * * *",
     default_args=DEFAULT_ARGS,
     tags=["ai-support", "daily"],
-    # ------------------------------------------------------------------
-    # TODO (nhiệm vụ 1): hai tham số dưới đây quyết định chuyện gì xảy ra
-    # khi ai đó bấm Clear Task, và khi DAG bị dồn nhiều lần chạy cùng lúc.
-    # Đọc lại triệu chứng ở phiếu #1041 rồi đặt lại cho đúng.
-    catchup=True,
-    # max_active_runs=?
-    # ------------------------------------------------------------------
+    # Không tự backfill lịch sử khi scheduler khởi động lại, và chỉ cho một
+    # DAG run ghi vào warehouse tại một thời điểm để tránh concurrent writers.
+    catchup=False,
+    max_active_runs=1,
 ) as dag:
 
     load_bronze = BashOperator(
