@@ -23,7 +23,7 @@ setup:  ## venv + thư viện + sinh dữ liệu (chạy một lần)
 	@test -d $(VENV) || python3 -m venv $(VENV)
 	@$(PIP) install -q --upgrade pip
 	@$(PIP) install -q -r requirements.txt
-	@$(PY) seed/generate.py
+	@$(PY) seed/generate.py --extra
 	@echo ""
 	@echo "  xong. Bước tiếp theo:  make pipeline  rồi  make verify"
 
