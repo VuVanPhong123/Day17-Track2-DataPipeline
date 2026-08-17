@@ -1,6 +1,6 @@
 # Báo cáo LAB 17 — Data Pipeline Engineering
 
-**Họ tên:** [điền họ tên]  **Lớp:** AICB-P2T2  **Ngày:** 17/08/2026
+**Họ tên:** Vũ Văn Phong(2A202601647)  **Lớp:** E403  **Ngày:** 17/08/2026
 
 ---
 
